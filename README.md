@@ -10,10 +10,13 @@ editable
  */
 ea('.x',(ev)=>{},opt)
 ```
-quick
+quick default css into ea.js
 ```
 //pug
 script(src="https://gnjo.github.io/ea/ea.js")
+```
+customize
+```
 //css
 @import url(https://gnjo.github.io/ea/ea.css);
 ```
