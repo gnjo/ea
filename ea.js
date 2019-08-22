@@ -91,7 +91,7 @@
    let el=ev.target
    el.dataset.num=''//need reflesh
    let max=fn.max(el)
-   el.dataset.num=nd(max,opt.st)//fn.nd(max)//number draw
+   el.dataset.num=opt.nd(max,opt.st)//fn.nd(max)//number draw
    el.dataset.max=max;
    el.dataset.length=el.textContent.length;
   }
