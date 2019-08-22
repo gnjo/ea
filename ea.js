@@ -73,9 +73,9 @@
  white-space:pre-wrap;
 }
 `;
- let _style=fn.q('head>style.ea')
+ let _style=fn.q('head>style.eacss')
  //
- if(!_style) document.head.appendChild( fn.i3(`<style class="ea">${css}</style>`) )
+ if(!_style) document.head.appendChild( fn.i3(`<style class="eacss">${css}</style>`) )
  ;
  ///default option
  let option={}
