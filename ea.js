@@ -51,14 +51,7 @@
  fn.nd=(max,st)=>Array.from({length:max}).map((d,i)=>fn.pad(i+st)).join('\n')
  ;
  ;
- ;
- ///core
- let option={}
- option.cls='ea'
- option.dt=70
- option.nd=fn.nd
- option.st=0
- ;
+ ;//core
  let css=`
 .ea{
  line-height:1.3;/*important*/
@@ -84,13 +77,20 @@
  //
  if(!_style) document.head.appendChild( fn.i3(`<style class="ea">${css}</style>`) )
  ;
+ ///default option
+ let option={}
+ option.cls='ea'
+ option.dt=70
+ option.nd=fn.nd
+ option.st=0
+ ; 
  function entry(q,_caller,_opt){
   let el=is.string(q)?fn.q(q):q
   ,opt=Object.assign({},option,_opt)
-  ,cls=opt.cls||'ea'
-  ,dt=opt.dt||70
-  ,nd=opt.nd||fn.nd
-  ,st=opt.start||0
+  ,cls=opt.cls
+  ,dt=opt.dt
+  ,nd=opt.nd
+  ,st=opt.st
   ,f=(ev)=>{
    let el=ev.target
    el.dataset.num=''//need reflesh
@@ -118,6 +118,6 @@
  opt.cls
  opt.dt
  opt.nd
- opt.start
+ opt.st
  */
 })(this);
