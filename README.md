@@ -5,8 +5,7 @@ editable
  opt.cls='ea'
  opt.dt=70
  opt.nd=fn.nd....
- opt.start=0
- //opt.css=1 //add the css. future...
+ opt.st=0
  */
 ea('.x',(ev)=>{},opt)
 ```
