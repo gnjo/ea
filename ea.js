@@ -3,8 +3,8 @@
  ;(function(root){
   /*original by underscore.js*/ 
   if(root._) return;
-  var _={}; 
-
+  var _={}
+  ;
   _.now = Date.now || function(){return new Date().getTime()};//line 1457
   //line 883
   _.debounce = function(func, wait, immediate) {
@@ -28,9 +28,9 @@
     if (callNow) { result = func.apply(context, args); context = args = null;}
     return result;
    };
-  };
-
-  root._ =_;
+  }
+  ;
+  root._ =_
  })(this)
  /// 
  let is={}
@@ -43,6 +43,7 @@
  fn.pad=(i)=>('0000'+i).slice(-3)
  fn.nd=(max,st)=>Array.from({length:max}).map((d,i)=>fn.pad(i+st)).join('\n')
  ;
+ ///core
  function entry(q,_caller,_opt){
   let el=is.string(q)?fn.q(q):q
   ,opt=_opt||{}
