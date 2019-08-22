@@ -1,5 +1,6 @@
-# ea
-editable
+# ea editable with line number
+demo https://codepen.io/gnjo/pen/wvwoOqg
+
 ```
  /*default
  opt.cls='ea'
