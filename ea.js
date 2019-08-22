@@ -87,24 +87,20 @@
  function entry(q,_caller,_opt){
   let el=is.string(q)?fn.q(q):q
   ,opt=Object.assign({},option,_opt)
-  ,cls=opt.cls
-  ,dt=opt.dt
-  ,nd=opt.nd
-  ,st=opt.st
   ,f=(ev)=>{
    let el=ev.target
    el.dataset.num=''//need reflesh
    let max=fn.max(el)
-   el.dataset.num=nd(max,st)//fn.nd(max)//number draw
+   el.dataset.num=nd(max,opt.st)//fn.nd(max)//number draw
    el.dataset.max=max;
    el.dataset.length=el.textContent.length;
   }
-  ,caller=(_caller)?_.debounce(_caller,dt):void 0
+  ,caller=(_caller)?_.debounce(_caller,opt.dt):void 0
   ;
-  f=_.debounce(f,dt)
+  f=_.debounce(f,opt.dt)
   if(!fn.gcs(el).lineHeight)console.error('need set the line-height')
   el.setAttribute('contenteditable','plaintext-only')
-  el.classList.add(cls)
+  el.classList.add(opt.cls)
   el.addEventListener('keyup',f)
   if(caller) el.addEventListener('keydown',caller)
   ;
