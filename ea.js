@@ -37,16 +37,56 @@
  is.string = function(obj){return toString.call(obj) === '[object String]'}
  ;
  let fn={}
+ fn.i3=(d)=>{
+  if(typeof d !=='string') return d
+  var el=document.createElement('table'); el.innerHTML=d.trim();
+  var me=el.childNodes[0]
+  el=void 0;
+  return me
+ }
  fn.q=(d)=>document.querySelector(d)
  fn.gcs=(el)=>window.getComputedStyle(el)
  fn.max=(el)=>el.clientHeight/parseInt(fn.gcs(el).lineHeight)
  fn.pad=(i)=>('0000'+i).slice(-3)
  fn.nd=(max,st)=>Array.from({length:max}).map((d,i)=>fn.pad(i+st)).join('\n')
  ;
+ ;
+ ;
  ///core
+ let option={}
+ option.cls='ea'
+ option.dt=70
+ option.nd=fn.nd
+ option.st=0
+ ;
+ let css=`
+.ea{
+ line-height:1.3;/*important*/
+ padding-left:2.5rem;/*important*/ 
+}
+.ea{
+ max-width:100%;
+ position:relative; 
+ font-family:monospace;
+ outline:none;
+ height:auto; 
+ flex-grow:1;
+ word-break:break-all;
+ white-space:pre-wrap;
+}
+.ea:before{
+ position:absolute;left:0;right:0;
+ content:attr(data-num);
+ white-space:pre-wrap;
+}
+`;
+ let _style=fn.q('head>style.ea')
+ //
+ if(!_style) document.head.appendChild( fn.i3(`<style class="ea">${css}</style>`) )
+ ;
  function entry(q,_caller,_opt){
   let el=is.string(q)?fn.q(q):q
-  ,opt=_opt||{}
+  ,opt=Object.assign({},option,_opt)
   ,cls=opt.cls||'ea'
   ,dt=opt.dt||70
   ,nd=opt.nd||fn.nd
