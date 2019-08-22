@@ -1,3 +1,6 @@
+//history
+//v1 make
+//v2 update timing change textContent
 ;(function(root){
  ///
  ;(function(root){
@@ -37,6 +40,18 @@
  is.string = function(obj){return toString.call(obj) === '[object String]'}
  ;
  let fn={}
+ fn.updateDom=function(el,caller,time,flg){
+  let target=el
+  ,_caller=_.debounce(caller,time||70)
+  ,def={childList:true}
+  ,config=(flg)?Object.assign({},def,{subtree:true}) :def
+  ,calc=(ev)=>{_caller(ev) }
+  ,ob=new MutationObserver(mu=>{ mu.map(calc)})
+  ob.observe(target,config)
+  ;
+  return ob;
+ }
+ fn.ud=fn.changeDom=fn.updateDom
  fn.i3=(d)=>{
   if(typeof d !=='string') return d
   var el=document.createElement('table'); el.innerHTML=d.trim();
@@ -54,23 +69,23 @@
  ;//core
  let css=`
 .ea{
- line-height:1.3;/*important*/
- padding-left:2.5rem;/*important*/ 
+line-height:1.3;/*important*/
+padding-left:2.5rem;/*important*/ 
 }
 .ea{
- max-width:100%;
- position:relative; 
- font-family:monospace;
- outline:none;
- height:auto; 
- flex-grow:1;
- word-break:break-all;
- white-space:pre-wrap;
+max-width:100%;
+position:relative; 
+font-family:monospace;
+outline:none;
+height:auto; 
+flex-grow:1;
+word-break:break-all;
+white-space:pre-wrap;
 }
 .ea:before{
- position:absolute;left:0;right:0;
- content:attr(data-num);
- white-space:pre-wrap;
+position:absolute;left:0;right:0;
+content:attr(data-num);
+white-space:pre-wrap;
 }
 `;
  let _style=fn.q('head>style.eacss')
@@ -97,14 +112,16 @@
   }
   ,caller=(_caller)?_.debounce(_caller,opt.dt):void 0
   ;
-  f=_.debounce(f,opt.dt)
+  //let f2=_.debounce(f,opt.dt)
   if(!fn.gcs(el).lineHeight)console.error('need set the line-height')
   el.setAttribute('contenteditable','plaintext-only')
   el.classList.add(opt.cls)
-  el.addEventListener('keyup',f)
+  //el.addEventListener('keyup',f)
+  fn.ud(el,f,opt.dt)
   if(caller) el.addEventListener('keydown',caller)
   ;
   f({target:el}) //initialize;
+  //el.textContent=el.textContent
   ;
   return el;
  }
