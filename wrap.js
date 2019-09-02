@@ -1,4 +1,10 @@
 ;(function(root){
+ let fn={}
+ fn.a2=function(me,p){p.appendChild(me);return me}
+ fn.as2=function(me,p){p.parentNode.insertBefore(me,p.nextElementSibling/*nextSibling*/);return me} 
+ fn.q=(s,doc=document)=>{return doc.querySelector(s)};
+ fn.ce=(d=>document.createElement(d))
+  
  function makemin(){
   if(fn.q('.wrapmincss'))return
   ;
