@@ -40,7 +40,7 @@ pointer-events:none
      relativePoints: [ { x: 0, y: 0 } ]
     }),
     interact.modifiers.restrict({
-     restriction: wrap.parentNode,
+     restriction: (opt.full)?document.documentElement:wrap.parentNode,
      elementRect: { top: 0, left: 0, bottom: 1, right: 1 },
      endOnly: true
     })
@@ -76,6 +76,7 @@ pointer-events:none
   ,padding:'0.5rem'
   ,border:'2px solid'
   ,boxSizing:'border-box'
+  ,full:true
  }
  ;
  ;
