@@ -135,7 +135,7 @@ white-space:pre-wrap;
   ,saver=(opt.save)?_.debounce(_saver,opt.dt):void 0
   ;
   ;
-  console.log(saver,opt)
+  //console.log(saver,opt)
   //let f2=_.debounce(f,opt.dt)
   if(!fn.gcs(el).lineHeight)console.error('need set the line-height')
   el.setAttribute('contenteditable','plaintext-only')
@@ -161,3 +161,4 @@ white-space:pre-wrap;
  opt.save
  */
 })(this);
+
