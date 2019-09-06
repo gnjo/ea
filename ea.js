@@ -119,11 +119,11 @@ white-space:pre-wrap;
  function entry(q,_caller,_opt){
   let el=is.string(q)?fn.q(q):q
   ,opt=Object.assign({},option,_opt)
-  ,_saver=(ev)=>{
+  ,_saver=function(ev){
    let el=ev.target
    fn.save(opt.save,el.textContent)
   }
-  ,f=(ev)=>{
+  ,f=function(ev){
    let el=ev.target
    el.dataset.num=''//need reflesh
    let max=fn.max(el)
