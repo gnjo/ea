@@ -64,6 +64,22 @@
  fn.max=(el)=>el.clientHeight/parseInt(fn.gcs(el).lineHeight)
  fn.pad=(i)=>('0000'+i).slice(-3)
  fn.nd=(max,st)=>Array.from({length:max}).map((d,i)=>fn.pad(i+st)).join('\n')
+fn.save=(_d,_d1)=>{
+ let key=fn.defaultkey,data=_d;
+ if(_d1){ key=_d;data=_d1}
+ data=JSON.stringify(data)
+ localStorage.setItem(key,data)
+ return key;
+}
+fn.load=(_d)=>{
+ let is={}
+ is.jsonString =function(d){ try{JSON.parse(d);return true}catch(e){return false} } 
+ let key=fn.defaultkey
+ if(_d)key=_d;
+ let data=localStorage.getItem(key)
+ data=is.jsonString(data)?JSON.parse(data):data
+ return data 
+} 
  ;
  ;
  ;//core
@@ -98,10 +114,15 @@ white-space:pre-wrap;
  option.dt=70
  option.nd=fn.nd
  option.st=0
+ option.save=''
  ; 
  function entry(q,_caller,_opt){
   let el=is.string(q)?fn.q(q):q
   ,opt=Object.assign({},option,_opt)
+  ,_saver=(ev)=>{
+   let el=ev.target
+   fn.save(opt.save,el.textContent)
+  }
   ,f=(ev)=>{
    let el=ev.target
    el.dataset.num=''//need reflesh
@@ -111,14 +132,17 @@ white-space:pre-wrap;
    el.dataset.length=el.textContent.length;
   }
   ,caller=(_caller)?_.debounce(_caller,opt.dt):void 0
+  ,saver=(opt.save)?_.debounce(_saver,opt.dt):void 0
   ;
   //let f2=_.debounce(f,opt.dt)
   if(!fn.gcs(el).lineHeight)console.error('need set the line-height')
   el.setAttribute('contenteditable','plaintext-only')
   el.classList.add(opt.cls)
   //el.addEventListener('keyup',f)
+  if(saver) el.textContent=fn.load(opt.save)
   fn.ud(el,f,opt.dt)
   if(caller) el.addEventListener('keydown',caller)
+  if(saver) el.addEventListener('keydown',saver) 
   ;
   f({target:el}) //initialize;
   //el.textContent=el.textContent
@@ -132,5 +156,6 @@ white-space:pre-wrap;
  opt.dt
  opt.nd
  opt.st
+ opt.save
  */
 })(this);
