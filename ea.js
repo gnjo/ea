@@ -134,6 +134,8 @@ white-space:pre-wrap;
   ,caller=(_caller)?_.debounce(_caller,opt.dt):void 0
   ,saver=(opt.save)?_.debounce(_saver,opt.dt):void 0
   ;
+  ;
+  console.log(saver,opt)
   //let f2=_.debounce(f,opt.dt)
   if(!fn.gcs(el).lineHeight)console.error('need set the line-height')
   el.setAttribute('contenteditable','plaintext-only')
