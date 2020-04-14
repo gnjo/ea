@@ -125,6 +125,7 @@ white-space:pre-wrap;
   }
   ,f=function(ev){
    //if(!ev)return
+   console.log(ev)
    let el=ev.target
    el.dataset.num=''//need reflesh
    let max=fn.max(el)
