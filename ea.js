@@ -124,8 +124,8 @@ white-space:pre-wrap;
    fn.save(opt.save,el.textContent)
   }
   ,f=function(ev){
-   //if(!ev)return
-   console.log(ev)
+   if(!ev)return
+   //console.log(ev)
    let el=ev.target
    el.dataset.num=''//need reflesh
    let max=fn.max(el)
