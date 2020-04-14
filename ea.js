@@ -3,9 +3,9 @@
 //v2 update timing change textContent
 ;(function(root){
  ///
- ;(function(root){
+ //;(function(root){
   /*original by underscore.js*/ 
-  if(root._) return;
+  //if(root._) return;
   var _={}
   ;
   _.now = Date.now || function(){return new Date().getTime()};//line 1457
@@ -33,8 +33,8 @@
    };
   }
   ;
-  root._ =_
- })(this)
+ // root._ =_
+ //})(this)
  /// 
  let is={}
  is.string = function(obj){return toString.call(obj) === '[object String]'}
@@ -124,6 +124,7 @@ white-space:pre-wrap;
    fn.save(opt.save,el.textContent)
   }
   ,f=function(ev){
+   //if(!ev)return
    let el=ev.target
    el.dataset.num=''//need reflesh
    let max=fn.max(el)
