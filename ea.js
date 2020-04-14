@@ -120,6 +120,7 @@ white-space:pre-wrap;
   let el=is.string(q)?fn.q(q):q
   ,opt=Object.assign({},option,_opt)
   ,_saver=function(ev){
+   if(!ev)return   
    let el=ev.target
    fn.save(opt.save,el.textContent)
   }
